@@ -90,3 +90,6 @@ target/
 
 #data 
 data/row/
+
+#models
+models/
