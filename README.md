@@ -2,7 +2,7 @@
 ============================== 
 
 
-<img src="R.png" alt="Skill Pilot Banner" width="600" height="400">
+<img src="imgs/R.png" alt="Skill Pilot Banner" width="600" height="400">
 
 An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
 
@@ -58,6 +58,8 @@ i used the stackoverflow yearly survey dataset (2023)
 ## Exploratory Data Analysis (EDA)
 - Utilized treemaps to visualize skill frequency across different categories (language, database, web framework, etc.)
 - Created role vs. skill heatmap and normalized it
+  <img src="imgs/normalized skills vs roles.png" alt="Skill vs role" width="600" height="400">
+
 - Employed dendrogram for hierarchical clustering to identify relationships between different role classes
 - Examined skill specificity to different roles
 
