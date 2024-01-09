@@ -15,31 +15,31 @@ and boom the magic happens !
 
 ## Table of Contents
 
-[Motivation](#motivations)
+[1. Motivation](#motivations)
 
-[Project Structure](#structure)
+[2. Project Structure](#structure)
 
-[Installation](#install )
+[3. Installation](#install )
 
-[Data Preprocessing & Cleaning](#preprocessing )
+[4. Data Preprocessing & Cleaning](#preprocessing )
 
-[Exploratory Data Analysis (EDA)](#eda)
+[5. Exploratory Data Analysis (EDA)](#eda)
 
-[Feature Engineering](#feature-engineering)
+[6. Feature Engineering](#feature-engineering)
 
-[Modeling](#modeling)
+[7. Modeling](#modeling)
 
-[Prediction and Dash Scripts](#scripts)
+[8. Prediction and Dash Scripts](#scripts)
 
-[Discussion](#disccusion )
+[9. Discussion](#disccusion)
 
-[Tools and Technologies](#tools )
+[10. Tools and Technologies](#tools)
 
-[Skills Demonstrated](#skills)
+[11. Skills Demonstrated](#skills)
 
-[Acknowledgments](#acknow )
+[12. Acknowledgments](#acknow)
 
-[Contact Information](#contactn)
+[13.Contact Information](#contactn)
 
 
 
