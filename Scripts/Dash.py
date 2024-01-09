@@ -2,11 +2,7 @@ import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
-import mlflow
-import mlflow.sklearn
 import os
-import pickle
-import yaml
 import pandas as pd
 import numpy as np
 from predict import model
@@ -14,8 +10,8 @@ from predict import model
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 
 # Global variables to store selected values
-model_output_scores=[]
-model_output_skills =[]
+model_output_scores = []
+model_output_skills = []
 selected_language = []
 selected_database = []
 selected_platform = []
@@ -23,7 +19,6 @@ selected_webframe = []
 selected_misc_tech = []
 selected_tools = []
 selected_target_role = []
-skills = ['Python', 'Java', 'C']
 
 # Layout of the app
 app.layout = dbc.Container(
@@ -33,14 +28,15 @@ app.layout = dbc.Container(
             dbc.Col(html.H1("TechSkill Explorer", className="text-center my-4 text-light"), width=12)
         ], className="bg-primary rounded-top py-2"),
 
-        # Language section
         dbc.Row([
+            # Sidebar with dropdowns
             dbc.Col([
-                html.H3("Language", className="text-primary"),
-                dcc.Dropdown(
-                    id='language-selector',
-                    options=[
-                        {'label': language, 'value': language} for language in [
+                dbc.Button("Choose skills and role", id='toggle-sidebar-button', n_clicks=0, color="primary", className="mt-3"),
+                dbc.Collapse([
+                    html.H3("Language", className="text-primary"),
+                    dcc.Dropdown(
+                        id='language-selector',
+                        options=[{'label': language, 'value': language} for language in [
                             'APL', 'Ada', 'Apex', 'Assembly', 'Bash/Shell (all shells)', 'C',
                             'C#', 'C++', 'Clojure', 'Cobol', 'Crystal', 'Dart', 'Delphi', 'Elixir',
                             'Erlang', 'F#', 'Flow', 'Fortran', 'GDScript', 'Go', 'Groovy',
@@ -49,212 +45,166 @@ app.layout = dbc.Container(
                             'PowerShell', 'Prolog', 'Python', 'R', 'Raku', 'Ruby', 'Rust', 'SAS',
                             'SQL', 'Scala', 'Solidity', 'Swift', 'TypeScript', 'VBA',
                             'Visual Basic (.Net)', 'Zig'
-                        ]
-                    ],
-                    multi=True,
-                    className="mb-3"
-                ),
-                html.Div(id='selected-language-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
+                        ]],
+                        multi=True,
+                        className="mb-3"
+                    ),
+                    html.Div(id='selected-language-output', className="lead text-muted"),
 
-        # Database section
-        dbc.Row([
-            dbc.Col([
+                # Database section
                 html.H3("Database", className="text-primary"),
                 dcc.Dropdown(
                     id='database-selector',
-                    options=[
-                        {'label': database, 'value': database} for database in [
-                            'BigQuery', 'Cassandra', 'Clickhouse', 'Cloud Firestore',
-                            'Cockroachdb', 'Cosmos DB', 'Couch DB', 'Couchbase', 'Datomic',
-                            'DuckDB', 'Dynamodb', 'Elasticsearch', 'Firebase Realtime Database',
-                            'Firebird', 'H2', 'IBM DB2', 'InfluxDB', 'MariaDB', 'Microsoft Access',
-                            'Microsoft SQL Server', 'MongoDB', 'MySQL', 'Neo4J', 'Oracle',
-                            'PostgreSQL', 'RavenDB', 'Redis', 'SQLite', 'Snowflake', 'Solr',
-                            'Supabase', 'TiDB'
-                        ]
-                    ],
+                    options=[{'label': database, 'value': database} for database in [
+                        'BigQuery', 'Cassandra', 'Clickhouse', 'Cloud Firestore',
+                        'Cockroachdb', 'Cosmos DB', 'Couch DB', 'Couchbase', 'Datomic',
+                        'DuckDB', 'Dynamodb', 'Elasticsearch', 'Firebase Realtime Database',
+                        'Firebird', 'H2', 'IBM DB2', 'InfluxDB', 'MariaDB', 'Microsoft Access',
+                        'Microsoft SQL Server', 'MongoDB', 'MySQL', 'Neo4J', 'Oracle',
+                        'PostgreSQL', 'RavenDB', 'Redis', 'SQLite', 'Snowflake', 'Solr',
+                        'Supabase', 'TiDB'
+                    ]],
                     multi=True,
                     className="mb-3"
                 ),
-                html.Div(id='selected-database-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
+                html.Div(id='selected-database-output', className="lead text-muted"),
 
-        # Platform section
-        dbc.Row([
-            dbc.Col([
+                # Platform section
                 html.H3("Platform", className="text-primary"),
                 dcc.Dropdown(
                     id='platform-selector',
-                    options=[
-                        {'label': platform, 'value': platform} for platform in [
-                            'Amazon Web Services (AWS)', 'Cloudflare', 'Colocation',
-                            'Digital Ocean', 'Firebase', 'Fly.io', 'Google Cloud', 'Heroku',
-                            'Hetzner', 'IBM Cloud Or Watson', 'Linode, now Akamai',
-                            'Managed Hosting', 'Microsoft Azure', 'Netlify', 'OVH', 'OpenShift',
-                            'OpenStack', 'Oracle Cloud Infrastructure (OCI)', 'Render', 'Scaleway',
-                            'VMware', 'Vercel', 'Vultr'
-                        ]
-                    ],
+                    options=[{'label': platform, 'value': platform} for platform in [
+                        'Amazon Web Services (AWS)', 'Cloudflare', 'Colocation',
+                        'Digital Ocean', 'Firebase', 'Fly.io', 'Google Cloud', 'Heroku',
+                        'Hetzner', 'IBM Cloud Or Watson', 'Linode, now Akamai',
+                        'Managed Hosting', 'Microsoft Azure', 'Netlify', 'OVH', 'OpenShift',
+                        'OpenStack', 'Oracle Cloud Infrastructure (OCI)', 'Render', 'Scaleway',
+                        'VMware', 'Vercel', 'Vultr'
+                    ]],
                     multi=True,
                     className="mb-3"
                 ),
-                html.Div(id='selected-platform-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
+                html.Div(id='selected-platform-output', className="lead text-muted"),
 
-        # Webframe section
-        dbc.Row([
-            dbc.Col([
+                # Webframe section
                 html.H3("Webframe", className="text-primary"),
                 dcc.Dropdown(
                     id='webframe-selector',
-                    options=[
-                        {'label': webframe, 'value': webframe} for webframe in [
-                            'ASP.NET', 'ASP.NET CORE', 'Angular', 'AngularJS', 'Blazor',
-                            'CodeIgniter', 'Deno', 'Django', 'Drupal', 'Elm', 'Express', 'FastAPI',
-                            'Fastify', 'Flask', 'Gatsby', 'Laravel', 'Lit', 'NestJS', 'Next.js',
-                            'Node.js', 'Nuxt.js', 'Phoenix', 'Play Framework', 'Qwik', 'React',
-                            'Remix', 'Ruby on Rails', 'Solid.js', 'Spring Boot', 'Svelte',
-                            'Symfony', 'Vue.js', 'WordPress', 'jQuery'
-                        ]
-                    ],
+                    options=[{'label': webframe, 'value': webframe} for webframe in [
+                        'ASP.NET', 'ASP.NET CORE', 'Angular', 'AngularJS', 'Blazor',
+                        'CodeIgniter', 'Deno', 'Django', 'Drupal', 'Elm', 'Express', 'FastAPI',
+                        'Fastify', 'Flask', 'Gatsby', 'Laravel', 'Lit', 'NestJS', 'Next.js',
+                        'Node.js', 'Nuxt.js', 'Phoenix', 'Play Framework', 'Qwik', 'React',
+                        'Remix', 'Ruby on Rails', 'Solid.js', 'Spring Boot', 'Svelte',
+                        'Symfony', 'Vue.js', 'WordPress', 'jQuery'
+                    ]],
                     multi=True,
                     className="mb-3"
                 ),
-                html.Div(id='selected-webframe-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
+                html.Div(id='selected-webframe-output', className="lead text-muted"),
 
-        #MiscTech
-        dbc.Row([
-            dbc.Col([
+                # MiscTech
                 html.H3("MiscTech", className="text-primary"),
                 dcc.Dropdown(
                     id='misc-tech-selector',
-                    options=[
-                        {'label': misc_tech, 'value': misc_tech} for misc_tech in [
-                            '.NET (5+) ', '.NET Framework (1.0 - 4.8)', '.NET MAUI',
-                           
-                    '.NET MAUI',
-                            'Apache Kafka', 'Apache Spark', 'CUDA', 'Capacitor', 'Cordova',
-                            'Electron', 'Flutter', 'GTK', 'Hadoop', 'Hugging Face Transformers',
-                            'Ionic', 'JAX', 'Keras', 'Ktor', 'MFC', 'Micronaut', 'NumPy', 'OpenGL',
-                            'Opencv', 'Pandas', 'Qt', 'Quarkus', 'RabbitMQ', 'React Native',
-                            'Scikit-Learn', 'Spring Framework', 'SwiftUI', 'Tauri', 'TensorFlow',
-                            'Tidyverse', 'Torch/PyTorch', 'Uno Platform', 'Xamarin'
-                        ]
-                    ],
+                    options=[{'label': misc_tech, 'value': misc_tech} for misc_tech in [
+                        '.NET (5+) ', '.NET Framework (1.0 - 4.8)', '.NET MAUI',
+                        'Apache Kafka', 'Apache Spark', 'CUDA', 'Capacitor', 'Cordova',
+                        'Electron', 'Flutter', 'GTK', 'Hadoop', 'Hugging Face Transformers',
+                        'Ionic', 'JAX', 'Keras', 'Ktor', 'MFC', 'Micronaut', 'NumPy', 'OpenGL',
+                        'Opencv', 'Pandas', 'Qt', 'Quarkus', 'RabbitMQ', 'React Native',
+                        'Scikit-Learn', 'Spring Framework', 'SwiftUI', 'Tauri', 'TensorFlow',
+                        'Tidyverse', 'Torch/PyTorch', 'Uno Platform', 'Xamarin'
+                    ]],
                     multi=True,
                     className="mb-3"
                 ),
-                html.Div(id='selected-misc-tech-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
+                html.Div(id='selected-misc-tech-output', className="lead text-muted"),
 
-        # Tools section
-        dbc.Row([
-            dbc.Col([
+                # Tools section
                 html.H3("Tools", className="text-primary"),
                 dcc.Dropdown(
                     id='tools-selector',
-                    options=[
-                        {'label': tool, 'value': tool} for tool in [
-                            'APT', 'Ansible', 'Ant', 'Boost.Test', 'Bun', 'CMake', 'CUTE',
-                            'Cargo', 'Catch2', 'Chef', 'Chocolatey', 'Composer', 'Dagger', 'Docker',
-                            'ELFspy', 'GNU GCC', 'Godot', 'Google Test', 'Gradle', 'Homebrew',
-                            'Kubernetes', 'LLVM\'s Clang', 'MSBuild', 'MSVC', 'Make',
-                            'Maven (build tool)', 'Meson', 'Ninja', 'Nix', 'NuGet', 'Pacman', 'Pip',
-                            'Podman', 'Pulumi', 'Puppet', 'QMake', 'SCons', 'Terraform', 'Unity 3D',
-                            'Unreal Engine', 'Visual Studio Solution', 'Vite', 'Wasmer', 'Webpack',
-                            'Yarn', 'bandit', 'build2', 'cppunit', 'doctest', 'lest',
-                            'liblittletest', 'npm', 'pnpm', 'snitch', 'tunit'
-                        ]
-                    ],
+                    options=[{'label': tool, 'value': tool} for tool in [
+                        'APT', 'Ansible', 'Ant', 'Boost.Test', 'Bun', 'CMake', 'CUTE',
+                        'Cargo', 'Catch2', 'Chef', 'Chocolatey', 'Composer', 'Dagger', 'Docker',
+                        'ELFspy', 'GNU GCC', 'Godot', 'Google Test', 'Gradle', 'Homebrew',
+                        'Kubernetes', 'LLVM\'s Clang', 'MSBuild', 'MSVC', 'Make',
+                        'Maven (build tool)', 'Meson', 'Ninja', 'Nix', 'NuGet', 'Pacman', 'Pip',
+                        'Podman', 'Pulumi', 'Puppet', 'QMake', 'SCons', 'Terraform', 'Unity 3D',
+                        'Unreal Engine', 'Visual Studio Solution', 'Vite', 'Wasmer', 'Webpack',
+                        'Yarn', 'bandit', 'build2', 'cppunit', 'doctest', 'lest',
+                        'liblittletest', 'npm', 'pnpm', 'snitch', 'tunit'
+                    ]],
                     multi=True,
                     className="mb-3"
                 ),
-                html.Div(id='selected-tools-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
-        
-        
-        # Target Role section
-        dbc.Row([
-            dbc.Col([
+                html.Div(id='selected-tools-output', className="lead text-muted"),
+
+                # Target Role section
                 html.H3("Target Role", className="text-primary"),
                 dcc.Dropdown(
                     id='target-role-selector',
-                    options=[
-                        {'label': role, 'value': role} for role in [
-                            'Academic researcher', 'Cloud infrastructure engineer',
-                            'Data or business analyst', 'Data scientist or machine learning specialist',
-                            'Database administrator', 'DevOps specialist',
-                            'Developer, QA or test', 'Developer, back-end',
-                            'Developer, desktop or enterprise applications',
-                            'Developer, front-end', 'Developer, full-stack',
-                            'Developer, game or graphics', 'Developer, mobile',
-                            'Engineer, data', 'Scientist', 'Security professional',
-                            'System administrator'
-                        ]
-                    ],
+                    options=[{'label': role, 'value': role} for role in [
+                        'Academic researcher', 'Cloud infrastructure engineer',
+                        'Data or business analyst', 'Data scientist or machine learning specialist',
+                        'Database administrator', 'DevOps specialist',
+                        'Developer, QA or test', 'Developer, back-end',
+                        'Developer, desktop or enterprise applications',
+                        'Developer, front-end', 'Developer, full-stack',
+                        'Developer, game or graphics', 'Developer, mobile',
+                        'Engineer, data', 'Scientist', 'Security professional',
+                        'System administrator'
+                    ]],
                     multi=False,
                     className="mb-3"
                 ),
-                html.Div(id='selected-target-role-output', className="lead text-muted")
-            ], width=6)
-        ], className="bg-light rounded-bottom p-3"),
-        
-        
-        
-        
-        # Button to trigger machine learning model
-        dbc.Row([
+                html.Div(id='selected-target-role-output', className="lead text-muted"),
+
+
+                ], id='sidebar', is_open=True),
+            ], width=8, style={'padding': '0px', 'margin': '0px'}),
+
+            # Main content area
             dbc.Col([
+                # Button to trigger machine learning model
                 dbc.Button("Get Recommendations", id='run-model-button', n_clicks=0, color="primary", className="mt-3"),
-                html.Div(id='model-output', className="lead text-muted mt-3")
-            ], width=12)
-        ], className="bg-light rounded-bottom p-3"),
-        
-        
-
-
-
-        # Bar Chart section
-        dbc.Row([
-            dbc.Col([
-                html.H3("Role Scores", className="text-primary"),
-                dcc.Graph(
-                    id='role-scores-bar-chart',
-                    figure={
-                        'data': [
-                            {'x': [score for _, score in model_output_scores], 'y': [role for role, _ in model_output_scores], 'type': 'bar', 'orientation': 'h'},
-                        ],
-                        'layout': {
-                            'title': 'Role Scores',
-                            'xaxis': {'title': 'Score'},
-                            'yaxis': {'title': 'Role'},
-                            'margin': {'l': 150, 'r': 10, 't': 30, 'b': 30},
-                        }
-                    }
+                html.Div(id='model-output', className="lead text-muted mt-3"),
+            
+                # Wrap the main content with dcc.Loading
+                dcc.Loading(
+                    id="loading",
+                    type="default",  # Options: "default", "circle", "dot", "circle-dot"
+                    children=[
+                        # Bar Chart section
+                        html.H3("Role Scores", className="text-primary"),
+                        dcc.Graph(
+                            id='role-scores-bar-chart',
+                            figure={'data': [], 'layout': {}},  # Set initial data and layout to empty
+                            style={'display': 'none'}  # Hide the graph initially
+                        ),
+            
+                        # Recommended Skills section
+                        html.H3("Recommended Skills", className="text-primary"),
+                        html.Div(id='recommended-skills-output', className="lead text-muted")
+                    ]
                 )
-            ], width=12)
+            ], width=10)
         ], className="bg-light rounded-bottom p-3"),
-
-        
-        # Additional section for displaying recommended skills
-        dbc.Row([
-            dbc.Col([
-                html.H3("Recommended Skills", className="text-primary"),
-                html.Div(id='recommended-skills-output', className="lead text-muted")
-            ], width=12)
-        ], className="bg-light rounded-bottom p-3"),
-        
 
     ]
 )
+
+# Toggle sidebar callback
+@app.callback(
+    Output('sidebar', 'is_open'),
+    [Input('toggle-sidebar-button', 'n_clicks')],
+    [State('sidebar', 'is_open')]
+)
+def toggle_sidebar(n_clicks, is_open):
+    if n_clicks:
+        return not is_open
+    return is_open
 
 # Callbacks to update selected values
 @app.callback(
@@ -344,7 +294,8 @@ def update_selected_target_role(selected_target_role_value):
 # Callback to run machine learning model
 @app.callback(
     [Output('recommended-skills-output', 'children'),
-     Output('role-scores-bar-chart', 'figure')],
+     Output('role-scores-bar-chart', 'figure'),
+     Output('role-scores-bar-chart', 'style')],  # Add output for style property
     [Input('run-model-button', 'n_clicks')],
     [State('language-selector', 'value'),
      State('database-selector', 'value'),
@@ -382,6 +333,12 @@ def run_machine_learning_model(n_clicks, language, database, platform, webframe,
              'type': 'bar', 'orientation': 'h'},
         ]
 
+        # Prepare data for bar chart
+        bar_chart_data = [
+            {'x': [score for _, score in model_output_scores], 'y': [role for role, _ in model_output_scores],
+             'type': 'bar', 'orientation': 'h'},
+        ]
+
         bar_chart_layout = {
             'title': 'Role Scores',
             'xaxis': {'title': 'Score'},
@@ -389,13 +346,11 @@ def run_machine_learning_model(n_clicks, language, database, platform, webframe,
             'margin': {'l': 150, 'r': 10, 't': 30, 'b': 30},
         }
 
-        # Reset global variables
-        model_output_scores, model_output_skills = [], []
-
-        return recommended_skills_output, {'data': bar_chart_data, 'layout': bar_chart_layout}
+        # Make the graph visible by setting display to 'block'
+        return recommended_skills_output, {'data': bar_chart_data, 'layout': bar_chart_layout}, {'display': 'block'}
     else:
-        return "", {'data': [], 'layout': {}}
-
+        # Keep the graph hidden by setting display to 'none'
+        return "", {'data': [], 'layout': {}}, {'display': 'none'}
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8050)
