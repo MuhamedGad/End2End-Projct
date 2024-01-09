@@ -1,5 +1,7 @@
 ### Skill Pilot
-==============================
+============================== 
+
+![Skill Pilot Banner](C:\Users\Mohamed Gad\OneDrive\Desktop\R.png)
 
 An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
 
