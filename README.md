@@ -118,7 +118,8 @@ Main challenges involved extensive data preprocessing to ensure data quality and
 
 ## Contact Information
 gad43617@gmail.com
-[Linkedin](https://www.linkedin.com/in/mohamed-gad-0808a41b3/)
+
+[Linkedin Profile](https://www.linkedin.com/in/mohamed-gad-0808a41b3/)
 
 
 
