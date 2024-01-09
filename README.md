@@ -6,11 +6,8 @@
 
 An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
 
-
-An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
-
 All you have to do is to chose your current skills and choose your target role and then press the get recommendations button.
-and finally boom the magic happens !
+and boom the magic happens !
 
   <img src="imgs/dash1.png" alt="Skill vs role" width="600" height="300">
   
@@ -19,16 +16,14 @@ and finally boom the magic happens !
 
 
 
-
-
 ## Project Description
 
 ### Motivation 
-In the ever-evolving software industry, the rapid emergence and obsolescence of languages, technologies, platforms, and frameworks pose a challenge for individuals navigating their learning journey. Skill Pilot addresses this challenge by offering a personalized learning companion, guiding users through their learning path based on their current skill set, industry trends, and personal preferences. Whether you're a beginner or an experienced developer seeking to diversify your skill set, Skill Pilot aims to streamline your learning experience.
+In the dynamic world of software, constantly changing languages, technologies, platforms, and frameworks can make it challenging for learners. The variety of technologies available might feel overwhelming at times.
+You cant pick what to learn next and the worst is when you are making a career shift and you don't know from where to start
 
-### Skill Pilot: Your Learning Companion
-Skill Pilot is designed to simplify the decision-making process for learners, providing tailored recommendations. It acts as a personalized guide, considering your current skills, industry trends, and preferences to suggest the most suitable next steps in your learning path.
-
+### Skill Pilot: Your Learning Advisor
+Skill Pilot is designed to simplify the decision-making process for learners, providing tailored recommendations. It acts as a personalized guide, considering your current skills, and preferences to suggest the most suitable next steps in your learning path.
 
 
 --------
