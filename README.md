@@ -1,81 +1,87 @@
 ### Skill Pilot
 ==============================
 
-A end to end data science project that helps you decide your next step on your software enginerring industry
+An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
+
 
 ## Project Description
 
-### Motivations 
-
-In today's fast-paced software industry, numerous languages, technologies, platforms, and frameworks emerge and evolve rapidly, while others become obsolete. For individuals taking their first steps in this dynamic environment, deciding what to learn next can be a daunting challenge. Recognizing this struggle, the motivation behind Skill Pilot is to provide a solution that simplifies and guides newcomers through their learning journey.
+### Motivation 
+In the ever-evolving software industry, the rapid emergence and obsolescence of languages, technologies, platforms, and frameworks pose a challenge for individuals navigating their learning journey. Skill Pilot addresses this challenge by offering a personalized learning companion, guiding users through their learning path based on their current skill set, industry trends, and personal preferences. Whether you're a beginner or an experienced developer seeking to diversify your skill set, Skill Pilot aims to streamline your learning experience.
 
 ### Skill Pilot: Your Learning Companion
+Skill Pilot is designed to simplify the decision-making process for learners, providing tailored recommendations. It acts as a personalized guide, considering your current skills, industry trends, and preferences to suggest the most suitable next steps in your learning path.
 
-End2End-Projct introduces Skill Pilot, a feature designed to alleviate the confusion and uncertainty associated with choosing the next steps in your learning path. Skill Pilot acts as your personalized learning companion, offering recommendations based on your current skill set, industry trends, and personal preferences. Whether you are a beginner or an experienced developer looking to diversify your skill set, Skill Pilot aims to make your learning experience smoother and more tailored to your goals.
 
 
 --------
 ## Project sturcure
 for the aim of the organizing the project i used the cookiecutter data science project template
-https://github.com/drivendata/cookiecutter-data-science
+[Cookiecutter Data Science Project Template](https://github.com/drivendata/cookiecutter-data-science)
 
 
 ## Installation
-1) you need python 3
-2) you need jupyter notebook installed
-3) spyder or any other ide
-4) just clone the projct and run the notebooks on the notebooks folder one by one
-5) you will need to download the data from Stackoverflow and place it on the raw data folder
-6) finally you are ready to run the dash script
+To run this project, you need:
 
+1. Python 3
+2. Jupyter Notebook installed
+2. An integrated development environment (IDE) such as Spyder
+2. Clone the project and run the notebooks in the "notebooks" folder sequentially
+2. Download the Stack Overflow yearly survey dataset (2023) and place it in the "raw data" folder
+2. Run the Dash script for the final application
+3. 
 ## Data
 i used the stackoverflow yearly survey dataset (2023)
+[Stackoverflow Yearly Suervey](https://survey.stackoverflow.co/)
 
 ## Data Preprocessing & Cleaning
-- Splitting multible answers on a single columns
-- fix the data type of columns such as years and age
-- drop the unwanted roles such as Student, Designer, ...
-- balancing class difereneced using upsampling and downsampling
-
+- Splitting multiple answers in a single column
+- Correcting data types (e.g., years and age)
+- Removing unwanted roles (e.g., Student, Designer)
+- Balancing class differences using upsampling and downsampling
+  
 ## Exploratory Data Analysis (EDA)
-- using treemap to show skill frequency of different categories (language, database, webframe, .. etc)
-- Creating rolve vs skill heatmap and normaizled it
-- using dendrogram for hierarchical clusetring to see relations between different role classes
-- finally checking for skills specificty to different roles
+- Utilized treemaps to visualize skill frequency across different categories (language, database, web framework, etc.)
+- Created role vs. skill heatmap and normalized it
+- Employed dendrogram for hierarchical clustering to identify relationships between different role classes
+- Examined skill specificity to different roles
 
 ## Feature Engineering
-- apply tsne to visualize the high diemsnion data (+250 features)
-- cluestring using silhouetter
-- create new features based on these clusters
- Result, went from 250+ features to 25 features, and the accuracy of the base model increased
+- Applied t-SNE to visualize high-dimensional data (250+ features)
+- Conducted clustering using silhouette analysis
+- Created new features based on these clusters, reducing the feature set from 250+ to 25 features and improving the base model accuracy
 
 ##. Modeling
-- started by using a basseline model avery simple logistic regression model
-- moved on to randomforest classifier using Pca
-- and finally fine tune the reandomforest model using gridsearch
-Note : all the models were saved with it's coressponding parameters and metrics using mlflow
-
+- Developed a baseline model using a simple logistic regression
+- Implemented a random forest classifier with PCA
+- Fine-tuned the random forest model using grid search
+- Saved models, parameters, and metrics using MLflow
 
 ## Prediction and Dash Scripts
-- made a script that takes on skills and target role and then apply all the apply all the preprocssing and predict and reurn the recommendations
-- deploying the model using Dash from plotly
-- 
+- Created a script for preprocessing, predicting, and returning recommendations based on input skills and target roles
+- Deployed the model using Dash from Plotly
+  
 ## Discussion
-main chanllenges were that the data wanted alot of preprocessing to make it in a good format
+Main challenges involved extensive data preprocessing to ensure data quality and format.
 
-13. Tools and Technologies
-used mlflow for tracking algorithms, plotly and matplotlib for visualizng , pandas and numpy for handling the data and dash for the model deployement
-14. Skills Demonstrated
-data manipulation and preprocessing
-data clearinng
-good visualizations
-model deployement
 
-16. Acknowledgments
-Stack overflow for the data set
-plotly for the dash
+## Tools and Technologies
+- MLflow for algorithm tracking
+- Plotly and Matplotlib for visualization
+- Pandas and NumPy for data handling
+- Dash for model deployment
+  
+## Skills Demonstrated
+- Data manipulation and preprocessing
+- Data cleaning
+- Effective visualizations
+- Model deployment
 
-18. Contact Information
+## Acknowledgments
+- Stack Overflow for providing the dataset
+- Plotly for Dashh
+
+## Contact Information
 gad43617@gmail.com
 
 
