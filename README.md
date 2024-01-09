@@ -11,7 +11,9 @@ An end-to-end data science project that assists individuals in making informed d
 
 All you have to do is to chose your current skills and choose your target role and then press the get recommendations button.
 and finally boom the magic happens !
+
   <img src="imgs/dash1.png" alt="Skill vs role" width="600" height="300">
+  
   <img src="imgs/dash2.png" alt="Skill vs role" width="600" height="300">
 
 
