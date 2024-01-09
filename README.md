@@ -1,7 +1,11 @@
 ### Skill Pilot
 ============================== 
 
-![Skill Pilot Banner](C:\Users\Mohamed Gad\OneDrive\Desktop\R.png)
+
+<img src="R.png" alt="Skill Pilot Banner" width="600" height="400">
+
+An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
+
 
 An end-to-end data science project that assists individuals in making informed decisions about their next steps in the software engineering industry.
 
@@ -18,22 +22,31 @@ Skill Pilot is designed to simplify the decision-making process for learners, pr
 
 --------
 ## Project sturcure
+- Notebooks folder : contains all the jupyter notebooks
+- data folder contains 2 subfolders, one for the raw data and the other one for the proccessd data
+- models : contains the mlflow outputs that keep track of each model
+- reports contains the graph produced by plotly
+- scripts : contains the scripts of the project
+
 for the aim of the organizing the project i used the cookiecutter data science project template
 [Cookiecutter Data Science Project Template](https://github.com/drivendata/cookiecutter-data-science)
 
 
 ## Installation
 To run this project, you need:
-
+    It's recommend to create ant activate a virtual environments before installing dependecies
 1. Python 3
 2. Jupyter Notebook installed
-2. An integrated development environment (IDE) such as Spyder
-2. Clone the project and run the notebooks in the "notebooks" folder sequentially
-2. Download the Stack Overflow yearly survey dataset (2023) and place it in the "raw data" folder
-2. Run the Dash script for the final application
-3. 
+3. install differen packages on the requirements.txt
+4. Clone the project 
+5. Download the [Stackoverflow Yearly Suervey](https://survey.stackoverflow.co/) dataset (2023) and place it in the "raw data" folder
+6. Run the notebooks in the "notebooks" folder sequentially
+7. Finally run the Dash script
 ## Data
 i used the stackoverflow yearly survey dataset (2023)
+2 reasons for chosing it 
+1. it's updated yearly so it's alwyas up to date
+2. it's not focusing on a specific geopgrahical area, instead developers from all over the world participate in the suervey
 [Stackoverflow Yearly Suervey](https://survey.stackoverflow.co/)
 
 ## Data Preprocessing & Cleaning
