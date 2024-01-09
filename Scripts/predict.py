@@ -8,12 +8,12 @@ import numpy as np
 
 def model (sample_skills, target_class)  :
     
-    DF = r'data\processed\clusters_skills_df.pkl'
-    CLUSTERS_SKILLS = r'data\processed\clusters_skills.yaml'
-    MLFLOW_TRACKING_URI = 'models/mlruns'
+    DF = r'..\data\processed\clusters_skills_df.pkl'
+    CLUSTERS_SKILLS = r'..\data\processed\clusters_skills.yaml'
+    MLFLOW_TRACKING_URI = '..\models/mlruns'
     MLFLOW_EXPERIMENT_NAME = "rf_job_predict"
     EXPERIMENT_ID = 'c410d8ab2d42489ba0b8738b000d13e5'
-    ARTIFACT_PATH = 'models/MODELS'
+    ARTIFACT_PATH = '..\models/MODELS'
     
 
     
