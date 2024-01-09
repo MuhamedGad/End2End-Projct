@@ -113,8 +113,8 @@ def model (sample_skills, target_class)  :
     
     
     
-    threshold = 1000
-    suggestions =  [key for key, value in sorted_items[:5]]
+    threshold = 1
+    suggestions =  [key for key, value in sorted_items[:5] if value>threshold]
 
 #    for key, value in sorted_items:
  #       if value > threshold:
