@@ -62,11 +62,21 @@ i used the stackoverflow yearly survey dataset (2023)
 
 - Employed dendrogram for hierarchical clustering to identify relationships between different role classes
 - Examined skill specificity to different roles
+ <img src="imgs/skills specificity.png" alt="skills specificity" width="600" height="400">
+
 
 ## Feature Engineering
 - Applied t-SNE to visualize high-dimensional data (250+ features)
+   <img src="imgs/t-SNE.png" alt="t-SNE" width="600" height="400">
+
 - Conducted clustering using silhouette analysis
-- Created new features based on these clusters, reducing the feature set from 250+ to 25 features and improving the base model accuracy
+  <img src="imgs/t-SNE clustered.png" alt="t-SNE clustered" width="600" height="400">
+
+- Created new features based on these clusters.
+  
+  Results
+  reducing the feature set from 250+ to 25 features
+  improving the base model accuracy
 
 ##. Modeling
 - Developed a baseline model using a simple logistic regression
