@@ -31,7 +31,7 @@ and boom the magic happens !
 
 [8. Prediction and Dash Scripts](#scripts)
 
-[9. Discussion](#disccusion)
+[9. Discussion](#discussion)
 
 [10. Tools and Technologies](#tools)
 
@@ -39,7 +39,7 @@ and boom the magic happens !
 
 [12. Acknowledgments](#acknow)
 
-[13.Contact Information](#contactn)
+[13.Contact Information](#contact)
 
 
 
@@ -53,6 +53,7 @@ You cant pick what to learn next and the worst is when you are making a career s
 Skill Pilot is designed to simplify the decision-making process for learners, providing tailored recommendations. It acts as a personalized guide, considering your current skills, and preferences to suggest the most suitable next steps in your learning path.
 
 
+
 --------
 ##  <a name="structure">Project structure
 - Notebooks folder : contains all the jupyter notebooks
@@ -63,6 +64,7 @@ Skill Pilot is designed to simplify the decision-making process for learners, pr
 
 for the aim of the organizing the project i used the cookiecutter data science project template
 [Cookiecutter Data Science Project Template](https://github.com/drivendata/cookiecutter-data-science)
+
 
 
 ## <a name="install">Installation
@@ -82,11 +84,13 @@ i used the stackoverflow yearly survey dataset (2023)
 2. it's not focusing on a specific geopgrahical area, instead developers from all over the world participate in the suervey
 [Stackoverflow Yearly Suervey](https://survey.stackoverflow.co/)
 
+
 ## <a name="preprocessing">Data Preprocessing & Cleaning
 - Splitting multiple answers in a single column
 - Correcting data types (e.g., years and age)
 - Removing unwanted roles (e.g., Student, Designer)
 - Balancing class differences using upsampling and downsampling
+
   
 ## <a name="eda">Exploratory Data Analysis (EDA)
 - Utilized treemaps to visualize skill frequency across different categories (language, database, web framework, etc.)
@@ -96,6 +100,7 @@ i used the stackoverflow yearly survey dataset (2023)
 - Employed dendrogram for hierarchical clustering to identify relationships between different role classes
 - Examined skill specificity to different roles
  <img src="imgs/skills specificity.png" alt="skills specificity" width="600" height="400">
+
 
 
 ## <a name="feature-engineering">Feature Engineering
@@ -111,18 +116,22 @@ i used the stackoverflow yearly survey dataset (2023)
   reducing the feature set from 250+ to 25 features
   improving the base model accuracy
 
+
 ## <a name="modeling">Modeling
 - Developed a baseline model using a simple logistic regression
 - Implemented a random forest classifier with PCA
 - Fine-tuned the random forest model using grid search
 - Saved models, parameters, and metrics using MLflow
 
+
 ## <a name="scripts">Prediction and Dash Scripts
 - Created a script for preprocessing, predicting, and returning recommendations based on input skills and target roles
 - Deployed the model using Dash from Plotly
+
   
-## <a name="disccusion">Discussion
+## <a name="discussion">Discussion
 Main challenges involved extensive data preprocessing to ensure data quality and format.
+
 
 
 ## <a name="tools">Tools and Technologies
@@ -130,6 +139,7 @@ Main challenges involved extensive data preprocessing to ensure data quality and
 - Plotly and Matplotlib for visualization
 - Pandas and NumPy for data handling
 - Dash for model deployment
+
   
 ## <a name="skills">Skills Demonstrated
 - Data manipulation and preprocessing
@@ -138,8 +148,10 @@ Main challenges involved extensive data preprocessing to ensure data quality and
 - Effective visualizations
 - Modeling and model deployement
 
+
 ## <a name="acknow">Acknowledgments
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
 
 ## <a name="contact">Contact Information
 gad43617@gmail.com
