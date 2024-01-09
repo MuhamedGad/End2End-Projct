@@ -9,7 +9,7 @@ import pickle
 import yaml
 import pandas as pd
 import numpy as np
-from sss import model
+from predict import model
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 
@@ -30,7 +30,7 @@ app.layout = dbc.Container(
     fluid=True,
     children=[
         dbc.Row([
-            dbc.Col(html.H1("Tech Stack Selector", className="text-center my-4 text-light"), width=12)
+            dbc.Col(html.H1("TechSkill Explorer", className="text-center my-4 text-light"), width=12)
         ], className="bg-primary rounded-top py-2"),
 
         # Language section
@@ -213,7 +213,7 @@ app.layout = dbc.Container(
         # Button to trigger machine learning model
         dbc.Row([
             dbc.Col([
-                dbc.Button("Run Machine Learning Model", id='run-model-button', n_clicks=0, color="primary", className="mt-3"),
+                dbc.Button("Get Recommendations", id='run-model-button', n_clicks=0, color="primary", className="mt-3"),
                 html.Div(id='model-output', className="lead text-muted mt-3")
             ], width=12)
         ], className="bg-light rounded-bottom p-3"),
