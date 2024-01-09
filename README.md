@@ -114,11 +114,11 @@ Main challenges involved extensive data preprocessing to ensure data quality and
 - Model deployment
 
 ## Acknowledgments
-- Stack Overflow for providing the dataset
-- Plotly for Dashh
+<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
 ## Contact Information
 gad43617@gmail.com
+[Linkedin](https://www.linkedin.com/in/mohamed-gad-0808a41b3/)
 
 
 
@@ -126,4 +126,4 @@ gad43617@gmail.com
 
 
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
