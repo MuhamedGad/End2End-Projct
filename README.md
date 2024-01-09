@@ -13,21 +13,34 @@ and boom the magic happens !
   
   <img src="imgs/dash2.png" alt="Skill vs role" width="600" height="300">
 
-
+## Table of Contents
 
 [Motivation](#motivations)
+
 [Project Structure](#structure)
+
 [Installation](#install )
+
 [Data Preprocessing & Cleaning](#preprocessing )
+
 [Exploratory Data Analysis (EDA)](#eda)
+
 [Feature Engineering](#feature-engineering)
+
 [Modeling](#modeling)
+
 [Prediction and Dash Scripts](#scripts)
+
 [Discussion](#disccusion )
+
 [Tools and Technologies](#tools )
+
 [Skills Demonstrated](#skills)
+
 [Acknowledgments](#acknow )
+
 [Contact Information](#contactn)
+
 
 
 ## Project Description
