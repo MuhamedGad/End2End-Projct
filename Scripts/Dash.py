@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 from predict import model
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LUX])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 
 # Global variables to store selected values
 model_output_scores = []
@@ -163,7 +163,7 @@ app.layout = dbc.Container(
 
 
                 ], id='sidebar', is_open=True),
-            ], width=8, style={'padding': '0px', 'margin': '0px'}),
+            ], width=10, style={'padding': '0px', 'margin': '0px'}),
 
             # Main content area
             dbc.Col([
@@ -177,7 +177,7 @@ app.layout = dbc.Container(
                     type="default",  # Options: "default", "circle", "dot", "circle-dot"
                     children=[
                         # Bar Chart section
-                        html.H3("Role Scores", className="text-primary"),
+                        html.H3("Role Scores", className="text-primary", hidden= True),
                         dcc.Graph(
                             id='role-scores-bar-chart',
                             figure={'data': [], 'layout': {}},  # Set initial data and layout to empty
@@ -189,7 +189,7 @@ app.layout = dbc.Container(
                         html.Div(id='recommended-skills-output', className="lead text-muted")
                     ]
                 )
-            ], width=10)
+            ], width=10, style={'padding': '0px', 'margin': '0px'})
         ], className="bg-light rounded-bottom p-3"),
 
     ]
@@ -329,21 +329,31 @@ def run_machine_learning_model(n_clicks, language, database, platform, webframe,
 
         # Prepare data for bar chart
         bar_chart_data = [
-            {'x': [score for _, score in model_output_scores], 'y': [role for role, _ in model_output_scores],
-             'type': 'bar', 'orientation': 'h'},
-        ]
-
-        # Prepare data for bar chart
-        bar_chart_data = [
-            {'x': [score for _, score in model_output_scores], 'y': [role for role, _ in model_output_scores],
-             'type': 'bar', 'orientation': 'h'},
+            {
+                'x': [score for _, score in model_output_scores],
+                'y': [role for role, _ in model_output_scores],
+                'type': 'bar',
+                'orientation': 'h',
+                'marker': {
+                    'color': 'rgba(47, 71, 96, 1)',  # Set your desired color here
+                    'line': {
+                        'color': 'rgba(165, 196, 228, 1)',  # Set border color if needed
+                        'width': 1,
+                    },
+                },
+            },
         ]
 
         bar_chart_layout = {
-            'title': 'Role Scores',
+            'title': 'Your Matching Role Based on Your Skills',
             'xaxis': {'title': 'Score'},
             'yaxis': {'title': 'Role'},
-            'margin': {'l': 150, 'r': 10, 't': 30, 'b': 30},
+            'margin': {'l': 300, 'r': 50, 't': 30, 'b': 30},  # Adjust these values
+            'width': 800,  # Adjust the width of the chart
+
+            'height': 400,
+            'paper_bgcolor': 'rgba(0,22,155,0)',  # Transparent background
+            'plot_bgcolor': 'rgba(0,0,0,0)',   # Transparent plot area background
         }
 
         # Make the graph visible by setting display to 'block'
